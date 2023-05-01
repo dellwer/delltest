@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, minimal-ui">
+    <script src="https://www.itxst.com/package/sortable/sortable.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            margin: 0 auto;
+            text-align: center;
+            width: 90%;
+        }
+
+
+            table td, table th {
+                border: 1px solid #cad9ea;
+                color: #666;
+                height: 30px;
+            }
+
+
+            table thead th {
+                background-color: #CCE8EB;
+            }
+
+
+            table tr:nth-child(odd) {
+                background: #fff;
+            }
+
+
+            table tr:nth-child(even) {
+                background: #F5FAFA;
+            }
+    </style>
+</head>
+<body>
+
+    
+</table>
+<script>
+
+var write_td='<table id="itxst">';
+for(let i=0;i<a.length;i++){
+        write_td+=`<tbody data-id='${i}'><tr>
+            <td>${a[i].account}_${a[i].num}</td>
+            <td>${a[i].count}</td>
+            <td>${a[i].bet}</td>
+            <td>${a[i].win}</td>
+            <td>${a[i].win_net}</td>
+        </tr></tbody>`;
+    };
+write_td+="</tabel>";
+
+$("body").val(write_td);
+
+
+    //获取对象
+    var el = document.getElementById('itxst');
+    //设置配置
+    var ops = {
+        animation: 1000,
+        //拖动结束
+        onEnd: function (evt) {
+            console.log(evt);
+            //获取拖动后的排序
+            var arr = sortable.toArray();
+            
+        }
+    };
+    //初始化
+    var sortable = Sortable.create(el, ops);
+
+
+</script>
+</body>
+</html>
