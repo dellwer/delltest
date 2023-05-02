@@ -55,9 +55,9 @@
 
 <script>
    
-    function check(){
+ function check(){
 
-     var a=$.parseJSON(document.getElementById('data_input').value);
+     const a=$.parseJSON(document.getElementById('data_input').value);
 var write_td='<table id="itxst">';
 for(let i=0;i<a.length;i++){
         write_td+=`<tbody data-id='${i}'><tr>
@@ -72,7 +72,7 @@ write_td+="</tabel>";
 
 $("body").append(write_td);
 
-    }
+
     //获取对象
     var el = document.getElementById('itxst');
     //设置配置
@@ -83,11 +83,12 @@ $("body").append(write_td);
             console.log(evt);
             //获取拖动后的排序
             var arr = sortable.toArray();
-            
+
         }
     };
     //初始化
     var sortable = Sortable.create(el, ops);
+}
 
 
 </script>
