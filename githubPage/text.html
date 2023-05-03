@@ -43,29 +43,48 @@
                 background-color:#ADFEDC;
             }
         
-            div{display:flex; }
+            .div_hidden{display:flex; }
+        
+            .copy{
+ display:none;
+  
+}
+
+.copy_btn{
+  
+  display:block;
+  margin:0 auto;
+  height:50px;
+  border-radius: 15px;
+  background-color: #ADFEDC
+}
+        
     </style>
 </head>
 <body>
-<div class="div_hidden">
-<textarea id="data_input" ></textarea>
-<button class="check_data" onclick="check()">检查</button>
-  </div>
+<div class="div_hidden" d><textarea id="data_input" class='data_input' ></textarea>
+<input type="button" value="value" onclick="check()" >
+</tabel>
+</div>
+
+<div class="copy" ><button class="copy_btn" onclick="copy_fn()">确认并复制</button>
+  <textarea style="opacity:0;" class="copy_txt"></textarea>
+</div>
     
 
 <script>
    
- function check(){
+function check(){
 $('.div_hidden').css("display","none");
      const a=$.parseJSON(document.getElementById('data_input').value);
 var write_td='<table id="itxst">';
 for(let i=0;i<a.length;i++){
         write_td+=`<tbody data-id='${i}'><tr>
             <td>${a[i].account}_${a[i].num}</td>
-            <td>${a[i].count}</td>
-            <td>${a[i].bet}</td>
-            <td>${a[i].win}</td>
-            <td>${a[i].win_net}</td>
+            <td class="count_td">${a[i].count}</td>
+            <td class="bet_td">${a[i].bet}</td>
+            <td class="win_td">${a[i].win}</td>
+            <td class="win_net_td">${a[i].win_net}</td>
         </tr></tbody>`;
     };
 write_td+="</tabel>";
@@ -77,7 +96,7 @@ $("body").append(write_td);
     var el = document.getElementById('itxst');
     //设置配置
     var ops = {
-        animation: 1000,
+        animation: 150,
         //拖动结束
         onEnd: function (evt) {
             console.log(evt);
@@ -88,7 +107,37 @@ $("body").append(write_td);
     };
     //初始化
     var sortable = Sortable.create(el, ops);
-}
+};
+
+
+function copy_fn(){
+  
+  let switch_td=$('.count_td');
+  let copy_str="";
+  for(let i=0;i<switch_td.length;i++)
+    {
+      let abc=$('.count_td')[i].innerText;
+      copy_str+=`${abc}\t`;
+      
+      abc=$('.bet_td')[i].innerText;
+      copy_str+=`${abc}\t`;
+      
+      abc=$('.win_td')[i].innerText;
+      copy_str+=`${abc}\t`;
+      
+      abc=$('.win_net_td')[i].innerText;
+      copy_str+=`${abc}\t\n`;
+      
+      
+    };
+  console.log(copy_str);
+  
+  $('.copy_txt').val(copy_str);
+var copy_text=document.querySelector('.copy_txt');
+copy_text.select();
+document.execCommand('copy');
+  
+};
 
 
 </script>
